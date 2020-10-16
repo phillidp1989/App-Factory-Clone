@@ -119,7 +119,13 @@ module.exports = {
         { _id: postId },
         { $push: { likedBy: userId }, $inc: { score: 1 } }
       );
-      res.status(200).json(result);
+      const postData = await db.Post.findById(postId);
+      const likerData = await db.User.findById(userId);
+      const notification = await db.User.updateOne(
+        { _id: postData.posterId },
+        { $push: { notifications: `${postData.title} was liked by ${likerData.displayName}` } }
+      );
+      res.status(200).json(result, notification);
     } catch (err) {
       next(err);
     }
