@@ -26,6 +26,28 @@ const UserSchema = new mongoose.Schema(
       default: false
     },
     notifications: [{ type: String }],
+    notificationSettings: {
+      likedPost: {
+        type: Boolean,
+        default: true
+      },
+      likedSolution: {
+        type: Boolean,
+        default: true
+      },
+      newSolution: {
+        type: Boolean,
+        default: true
+      },
+      updatedPost: {
+        type: Boolean,
+        default: true
+      },
+      updatedSolution: {
+        type: Boolean,
+        default: true
+      }
+    },
     // Reference to document in the Post collection to allow populate method to be used
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
     solutions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Solution' }]
