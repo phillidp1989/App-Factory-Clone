@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const environment = 'production';
+const environment = 'development';
 let url;
 
 if (environment === 'development') {
